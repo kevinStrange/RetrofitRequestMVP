@@ -17,6 +17,8 @@
         android:name=".base.BaseApplication"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <meta-data android:name="design_width" android:value="1080"/>
+        <meta-data android:name="design_height" android:value="1920"/>
         <activity android:name=".activity.login.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

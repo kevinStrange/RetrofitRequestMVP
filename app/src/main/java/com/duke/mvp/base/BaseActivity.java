@@ -8,7 +8,7 @@ import android.support.v4.app.FragmentActivity;
 import android.view.View;
 import android.view.Window;
 import android.widget.Toast;
-
+import com.zhy.autolayout.AutoLayoutActivity;
 /**
  * 父类的Activity
  */

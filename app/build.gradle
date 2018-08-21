@@ -34,7 +34,7 @@ dependencies {
     /* 崩溃日志记录框架  see: https://github.com/wenmingvs/LogReport 先导入maven { url "https://jitpack.io" }*/
     implementation 'com.github.wenmingvs:LogReport:1.0.3'
     //用于UI适配
-    implementation 'com.zhy:autolayout:1.4.5'
+    implementation 'com.zhy:autolayout:1.4.3'
     // RxJava2 + Retrofit2 + OkHttp3
     implementation 'com.squareup.okhttp3:okhttp:3.10.0'
     implementation "io.reactivex.rxjava2:rxjava:2.1.11"

@@ -22,7 +22,7 @@
             android:layout_height="match_parent" />
     </LinearLayout>
 
-    <LinearLayout
+    <com.zhy.autolayout.AutoLinearLayout
         android:layout_marginTop="45dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -38,7 +38,7 @@
             android:layout_marginLeft="15dp"
             android:layout_width="wrap_content"
             android:layout_height="match_parent" />
-    </LinearLayout>
+    </com.zhy.autolayout.AutoLinearLayout>
 
     <Button
         android:text="登录"

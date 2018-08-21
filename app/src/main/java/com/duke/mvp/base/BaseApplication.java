@@ -4,6 +4,8 @@ import android.annotation.SuppressLint;
 import android.app.Application;
 import android.content.Context;
 
+import com.zhy.autolayout.config.AutoLayoutConifg;
+
 /**
  * author : Duke
  * date   : 2018/8/21 13:52
@@ -18,6 +20,7 @@ public class BaseApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        AutoLayoutConifg.getInstance().useDeviceSize();
         mContext = this;
     }
 
