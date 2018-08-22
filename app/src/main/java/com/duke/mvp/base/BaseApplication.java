@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.app.Application;
 import android.content.Context;
 
+import com.duke.mvp.util.CrashHandler;
 import com.zhy.autolayout.config.AutoLayoutConifg;
 
 /**
@@ -21,6 +22,8 @@ public class BaseApplication extends Application {
     public void onCreate() {
         super.onCreate();
         AutoLayoutConifg.getInstance().useDeviceSize();
+        CrashHandler crashHandler = CrashHandler.getInstance();
+        crashHandler.init(this);
         mContext = this;
     }
 

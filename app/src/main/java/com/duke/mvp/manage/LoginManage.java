@@ -1,5 +1,6 @@
 package com.duke.mvp.manage;
 
+import android.content.Context;
 import android.support.annotation.NonNull;
 
 import com.alibaba.fastjson.JSONException;
@@ -24,12 +25,11 @@ import okhttp3.RequestBody;
  */
 public class LoginManage extends BaseManage {
 
-    public void login(@NonNull String username, @NonNull String pwd, @NonNull final ILoginListener<LoginBean>
+    public void login(@NonNull String username, @NonNull String pwd, final Context context,@NonNull final ILoginListener<LoginBean>
             listener) {
-        Lg.d("開始執行網絡請求");
         httpService.login(username, pwd)
                 .compose(new CommonTransformer<LoginBean>())
-                .subscribe(new CommonObserver<LoginBean>(BaseApplication.getContext()) {
+                .subscribe(new CommonObserver<LoginBean>(context,true) {
 
                     @Override
                     public void onNext(@io.reactivex.annotations.NonNull LoginBean loginBean) {
@@ -39,7 +39,6 @@ public class LoginManage extends BaseManage {
                     @Override
                     protected void onError(ApiException e) {
                         super.onError(e);
-
                         listener.failInfo(e.message);
                     }
                 });
@@ -52,7 +51,7 @@ public class LoginManage extends BaseManage {
      * @param listener
      * @return
      */
-    public boolean loginToJsonCommit(@NonNull String username, @NonNull String pwd, @NonNull final ILoginListener<LoginBean>
+    public boolean loginToJsonCommit(@NonNull String username, @NonNull String pwd, final Context context,@NonNull final ILoginListener<LoginBean>
             listener) {
         JSONObject root = new JSONObject();
         JSONObject requestData = new JSONObject();
@@ -68,7 +67,7 @@ public class LoginManage extends BaseManage {
         RequestBody requestBody = RequestBody.create(MediaType.parse("application/json"), root.toString());
         httpService.login(requestBody)
                 .compose(new CommonTransformer<LoginBean>())
-                .subscribe(new CommonObserver<LoginBean>(BaseApplication.getContext()) {
+                .subscribe(new CommonObserver<LoginBean>(context,false) {
 
                     @Override
                     public void onNext(@io.reactivex.annotations.NonNull LoginBean loginBean) {

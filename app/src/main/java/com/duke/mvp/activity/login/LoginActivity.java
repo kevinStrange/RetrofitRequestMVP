@@ -1,7 +1,7 @@
 package com.duke.mvp.activity.login;
 
+import android.annotation.SuppressLint;
 import android.view.View;
-
 
 import com.duke.mvp.R;
 import com.duke.mvp.base.BaseActivity;
@@ -15,10 +15,21 @@ public class LoginActivity extends BaseActivity implements ILoginListener {
         return R.layout.activity_login;
     }
 
+    @SuppressLint("CheckResult")
     @Override
     protected void init() {
+//        Observable.timer(1, TimeUnit.SECONDS)
+//                .subscribeOn(Schedulers.io())
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .subscribe(new Consumer<Long>() {
+//                    @Override
+//                    public void accept(@NonNull Long aLong) throws Exception {
         LoginManage loginManage = new LoginManage();
-        loginManage.login("123", "123", this);
+        loginManage.login("123", "123", mContext, this);
+//                    }
+//                });
+
+
     }
 
     @Override
