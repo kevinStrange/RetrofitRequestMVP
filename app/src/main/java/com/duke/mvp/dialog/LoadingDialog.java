@@ -13,7 +13,6 @@ public class LoadingDialog {
     }
 
     static ProgressDialog progressDialog;
-//    static LoadingDialog progressDialog;
 
     public static void showLoading(Context context, String s) {
         try {
@@ -24,14 +23,12 @@ public class LoadingDialog {
             if (((Activity) context).isFinishing()) {
                 return;
             }
-
             if (progressDialog == null) {
                 progressDialog = new ProgressDialog(context);
             } else {
                 progressDialog.dismiss();
                 return;
             }
-
             progressDialog.setIndeterminate(true);
             progressDialog.setCanceledOnTouchOutside(false);
             progressDialog.setMessage(s);

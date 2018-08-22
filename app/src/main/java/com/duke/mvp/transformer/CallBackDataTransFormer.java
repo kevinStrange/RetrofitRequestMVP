@@ -30,7 +30,7 @@ public class CallBackDataTransFormer<T> implements ObservableTransformer<BaseHtt
                 if (tBaseHttpResult == null) {
                     throw new ServerException(ErrorType.EMPTY_BEAN, "解析对象为空");
                 }
-                Lg.e(TAG, tBaseHttpResult.toString());
+//                Lg.d(tBaseHttpResult.toString());
                 if (tBaseHttpResult.getStatus() != ErrorType.SUCCESS) {
                     throw new ServerException(tBaseHttpResult.getStatus(),
                             tBaseHttpResult.getMessage());
