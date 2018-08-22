@@ -2,8 +2,22 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
-
+    <!--<com.duke.mvp.view.NavigationView-->
+        <!--android:id="@+id/navigationView"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="48dp"-->
+        <!--android:layout_alignParentTop="true"-->
+        <!--android:background="@color/colorAccent"-->
+        <!--app:nv_centerText="登录"-->
+        <!--app:nv_centerTextColor="@color/white"-->
+        <!--app:nv_leftTextIsBackEvent="true" />-->
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="260dp"
+        android:background="@mipmap/main_login_title_bg"
+        android:scaleType="fitXY"/>
     <LinearLayout
         android:layout_marginTop="45dp"
         android:layout_width="match_parent"

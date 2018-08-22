@@ -1,9 +1,12 @@
 package com.duke.mvp.activity;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.FragmentActivity;
 import android.view.View;
 
+import com.duke.mvp.activity.login.LoginActivity;
 import com.duke.mvp.base.BaseActivity;
 
 /**
@@ -12,35 +15,12 @@ import com.duke.mvp.base.BaseActivity;
  * explain   :APP启动页
  * version: 1.0
  */
-public class LauncherActivity extends BaseActivity {
+public class LauncherActivity extends Activity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }
 
-    @Override
-    protected int getLayoutId() {
-        return 0;
-    }
 
-    @Override
-    protected void init() {
-
-    }
-
-    @Override
-    protected void initView() {
-
-    }
-
-    @Override
-    protected void initData() {
-
-    }
-
-    @Override
-    protected void otherViewClick(View view) {
-
-    }
 }

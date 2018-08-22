@@ -5,16 +5,23 @@ import android.support.annotation.NonNull;
 
 import com.alibaba.fastjson.JSONException;
 import com.alibaba.fastjson.JSONObject;
-import com.duke.mvp.base.BaseApplication;
 import com.duke.mvp.base.BaseManage;
 import com.duke.mvp.bean.LoginBean;
+import com.duke.mvp.eventbus.LoginSuccessEvent;
 import com.duke.mvp.exception.ApiException;
 import com.duke.mvp.interfaces.ILoginListener;
 import com.duke.mvp.observer.CommonObserver;
 import com.duke.mvp.transformer.CommonTransformer;
-import com.duke.mvp.util.Lg;
+import com.duke.mvp.util.FileUtils;
+
+import org.greenrobot.eventbus.EventBus;
+
+import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 
 import okhttp3.MediaType;
+import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 
 /**
@@ -33,7 +40,8 @@ public class LoginManage extends BaseManage {
 
                     @Override
                     public void onNext(@io.reactivex.annotations.NonNull LoginBean loginBean) {
-                        listener.successInfo(loginBean);
+                        EventBus.getDefault().post(new LoginSuccessEvent(loginBean));
+//                        listener.successInfo(loginBean);
                     }
 
                     @Override
@@ -81,5 +89,53 @@ public class LoginManage extends BaseManage {
                     }
                 });
         return true;
+    }
+
+    public void uploadImg( final Context context){
+//        Map<String,RequestBody> params = new HashMap<>();
+//        //以下参数是伪代码，参数需要换成自己服务器支持的
+//        params.put("type", convertToRequestBody("type"));
+//        params.put("title",convertToRequestBody("title"));
+//
+//        //为了构建数据，同样是伪代码
+        String path1 = FileUtils.SDPATH + "/sctek/" +  "test.jpg";
+//        String path2 = Environment.getExternalStorageDirectory() + File.separator + "test1.jpg";
+//        List<File> fileList = new ArrayList<>();
+//        fileList.add(new File(path1));
+//        fileList.add(new File(path2));
+//        List<MultipartBody.Part> partList = filesToMultipartBodyParts(fileList);
+
+        MultipartBody.Builder builder = new MultipartBody.Builder()
+                .setType(MultipartBody.FORM);//表单类型
+        RequestBody imageBody = RequestBody.create(MediaType.parse("multipart/form-data"), new File(path1));
+        builder.addFormDataPart("file", "test.jpg", imageBody);//imgfile 后台接收图片流的参数名
+        List<MultipartBody.Part> parts = builder.build().parts();
+        httpService.addCase2(parts).compose(new CommonTransformer<LoginBean>())
+                .subscribe(new CommonObserver<LoginBean>(context,false) {
+
+                    @Override
+                    public void onNext(@io.reactivex.annotations.NonNull LoginBean loginBean) {
+                    }
+
+                    @Override
+                    protected void onError(ApiException e) {
+                        super.onError(e);
+                    }
+                });
+
+    }
+    private RequestBody convertToRequestBody(String param){
+        RequestBody requestBody = RequestBody.create(MediaType.parse("text/plain"), param);
+        return requestBody;
+    }
+
+    private List<MultipartBody.Part> filesToMultipartBodyParts(List<File> files) {
+        List<MultipartBody.Part> parts = new ArrayList<>(files.size());
+        for (File file : files) {
+            RequestBody requestBody = RequestBody.create(MediaType.parse("image/png"), file);
+            MultipartBody.Part part = MultipartBody.Part.createFormData("multipartFiles", file.getName(), requestBody);
+            parts.add(part);
+        }
+        return parts;
     }
 }
