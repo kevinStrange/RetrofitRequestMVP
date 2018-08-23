@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">retrofit</string>
+    <string name="login_pwd_hint">输入密码</string>
+    <string name="login_account_hint">@string/phone_hint</string>
+    <string name="phone_hint">输入手机号码</string>
+    <string name="text_stay_in">我要入驻</string>
+    <string name="text_retrieve_passWord">找回密码</string>
+    <string name="login">登录</string>
 </resources>

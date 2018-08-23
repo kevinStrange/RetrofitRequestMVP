@@ -44,6 +44,9 @@ public abstract class CommonObserver<T> extends BaseObserver<T> {
     @Override
     protected void onError(ApiException e) {
         Lg.e("HTTP错误 --> " + "code:" + e.code + ", message:" + e.message);
+        if (misShowDialog){
+            LoadingDialog.dismissLoading();
+        }
     }
 
     @Override
